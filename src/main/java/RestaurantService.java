@@ -10,7 +10,6 @@ public class RestaurantService {
             if(res.getName().equals(restaurantName))
                 return res;
         }
-//        return null;
         throw new restaurantNotFoundException(restaurantName);
     }
 
