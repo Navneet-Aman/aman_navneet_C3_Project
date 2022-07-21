@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import com.RestaurantFinder.Restaurant;
+import com.RestaurantFinder.itemNotFoundException;
 import java.time.LocalTime;
-
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -34,36 +36,33 @@ class RestaurantTest {
 		  }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+		//>>>>>>>>>>>>>>>>>>>>>>>>>>PRICE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			//craeting spoof to test order details
 
-    @Test
-    public void item_added_to_menu_should_return_the_price_greater_than_zero() {
+ List<Item> spoof = new ArrayList<Item>();
+			 
+	@Test
+    public void order_total_post_item_selection() {
         addRestaurantDetails();
-   //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        restaurant.addToMenu("Sizzling brownie",319);
-
-        int price = restaurant.getSelectedItemPrice();
-
-
-//        System.out.println(price);
-
-        assertEquals(707, price);
+		 spoof = restaurant.getMenu();
+		int price =  restaurant.getOrderTotal(spoof);
+		assertEquals(888, price);
     }
 
     @Test
-    public void item_not_added_to_menu_should_return_zero() {
-        LocalTime openingTime = LocalTime.parse("10:30:00");
-        LocalTime closingTime = LocalTime.parse("22:00:00");
-        restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
-//        restaurant.addToMenu("Sweet corn soup",119);
-//        restaurant.addToMenu("Vegetable lasagne", 269);
-//        restaurant.addToMenu("Sizzling brownie",319);
-
-        int price = restaurant.getSelectedItemPrice();
-
-//        System.out.println(price);
-
-        assertEquals(0, price);
+    public void order_total_post_item_removed_from_selection() {
+      addRestaurantDetails();
+	  spoof = restaurant.getMenu();
+	 int total = restaurant.getOrderValue(spoof);
+        int afterTotal = spoof.get(1).getPrice();
+        spoof.remove(1);
+        int price = restaurant.getOrderTotal();
+		int value = total-afterTotal;
+		assertEquals(value, price);
     }
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>PRICE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test

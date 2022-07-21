@@ -33,7 +33,7 @@ class RestaurantServiceTest {
     @Test
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
           addRestaurantDetails();
-		  String restaurantName = "New Chapia";
+		  String restaurantName = "New Chapiaa";
 		  assertThrows(restaurantNotFoundException.class, () -> service.findRestaurantByName(restaurantName), "Restaurant not found");
 		  }
     //<<<<<<<<<<<<<<<<<<<<SEARCHING>>>>>>>>>>>>>>>>>>>>>>>>>>

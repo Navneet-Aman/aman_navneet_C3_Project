@@ -25,6 +25,7 @@ public class Restaurant {
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
+        List<Item> menu = this.menu;
         return menu;
     }
 
@@ -49,15 +50,7 @@ public class Restaurant {
 
         menu.remove(itemToBeRemoved);
     }
-
-    public int getSelectedItemPrice() {
-        int amount = 0;
-        for(Item item: menu) {
-            amount += item.getPrice();
-        }
-        return amount;
-    }
-
+	
     public void displayDetails(){
         System.out.println("Restaurant:"+ name + "\n"
                 +"Location:"+ location + "\n"
@@ -71,4 +64,5 @@ public class Restaurant {
         return name;
     }
 
+ 
 }
